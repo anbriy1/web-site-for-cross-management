@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+</head>
+<body>
+    <p></p>
+    
+    <script>
+        async function redirectByRegion() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                const countryCode = data.country_code;
+                
+                console.log('Страна:', countryCode);
+                
+                const countryFolders = {
+                    'RU': 'ru',
+                    'BY': 'ru',
+                    'KZ': 'ru',
+                    'KG': 'ru',
+                    'TJ': 'ru',
+                    'UZ': 'ru',
+                    'AM': 'ru',
+                    'AZ': 'ru',
+                    'MD': 'ru',
+                    'IN': 'india',
+                    'CN': 'asia',
+                    'JP': 'asia',
+                    'KR': 'asia',
+                    'TH': 'asia',
+                    'VN': 'asia',
+                    'PH': 'asia',
+                    'ID': 'asia',
+                    'MY': 'asia',
+                    'SG': 'asia',
+                    'TW': 'asia',
+                    'HK': 'asia',
+                    'MN': 'asia',
+                    'KH': 'asia',
+                    'LA': 'asia',
+                    'MM': 'asia',
+                    'BD': 'asia',
+                    'PK': 'asia',
+                    'NP': 'asia',
+                    'LK': 'asia'
+                };
+                
+                const folder = countryFolders[countryCode] || 'en';
+                
+                window.location.href = `${folder}/index.html`;
+                
+            } catch (error) {
+                console.error('Ошибка:', error);
+                window.location.href = 'en/index.html';
+            }
+        }
+        
+        redirectByRegion();
+    </script>
+</body>
+</html>
